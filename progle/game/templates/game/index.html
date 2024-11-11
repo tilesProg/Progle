@@ -48,17 +48,6 @@
         <!-- Table to display past guesses -->
         <div id="guesses-table" style="margin-top: 20px;"></div>
         
-        <!-- Display the daily word below the input field -->
-        <div class="daily-word">
-            <h3>Today's Word:</h3>
-            <p><strong>{{ daily_word.name }}</strong></p>
-        </div>
-
-        <div class="manual-set">
-            <button id="set-daily-word-btn">Set Today's Word Manually</button>
-            <p id="message"></p>
-        </div>
-        
         <!-- Pass the URL for the 'game:guess' action to JS using a data attribute -->
         <div id="js-data" data-guess-url="{% url 'game:check_guess' %}"></div>
     </div>

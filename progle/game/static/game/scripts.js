@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const setDailyWordBtn = document.getElementById('set-daily-word-btn');
-    const messageElement = document.getElementById('message');
-    const dailyWordElement = document.querySelector('.daily-word strong');
     const guessForm = document.getElementById('guess-form');
     const guessInput = document.getElementById('guess');
     const wordSuggestions = document.getElementById('word-suggestions');
@@ -11,34 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     guessInput.setAttribute('autocomplete', 'off');
 
-    setDailyWordBtn.addEventListener('click', () => {
-        fetch('/set-daily-word/', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
-                "X-Requested-With": "XMLHttpRequest"
-            },
-            body: JSON.stringify({})
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                messageElement.textContent = data.message;
-                messageElement.style.color = "green";
-                if (dailyWordElement) {
-                    dailyWordElement.textContent = data.new_word;
-                }
-            } else {
-                messageElement.textContent = data.message;
-                messageElement.style.color = "red";
-            }
-        })
-        .catch(error => {
-            messageElement.textContent = "An error occurred.";
-            messageElement.style.color = "red";
-        });
-    });
+    fetch('/set-daily-word/', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+            "X-Requested-With": "XMLHttpRequest"
+        },
+        body: JSON.stringify({})
+    })
 
     fetch('/get-word-suggestions/')
         .then(response => response.json())
@@ -99,23 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const guess = guessInput.value.trim();
 
             if (!guess) {
-                messageElement.textContent = "Please enter a guess!";
-                messageElement.style.color = "red";
                 enterPressed = false;  // Reset flag
                 return;
             }
 
             if (guessedWords.has(guess)) {  // Check if the word has already been guessed
-                messageElement.textContent = "You've already guessed that word!";
-                messageElement.style.color = "orange";
                 enterPressed = false;  // Reset flag
                 return;
             }
 
             const isValidGuess = wordSuggestions.querySelector(`option[value="${guess}"]`);
             if (!isValidGuess) {
-                messageElement.textContent = "Please enter a valid word from the suggestions!";
-                messageElement.style.color = "red";
                 enterPressed = false;  // Reset flag
                 return;
             }
@@ -132,20 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    messageElement.textContent = data.message;
-                    messageElement.style.color = 'green';
                     guessedWords.add(guess);  // Add the guess to the set of guessed words
                     updateFeedbackBoxes(data.feedback);
                     guessInput.value = '';  // Clear the input field after a successful guess
-                } else {
-                    messageElement.textContent = data.message;
-                    messageElement.style.color = 'red';
                 }
                 enterPressed = false;  // Reset flag after processing
             })
             .catch(error => {
-                messageElement.textContent = "An error occurred.";
-                messageElement.style.color = "red";
                 enterPressed = false;  // Reset flag in case of error
             });
         });
