@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progle</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'game/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Progle</h1>
+        <h2>Guess the word of the day!</h2>
+        
+        <!-- Add your input form for guessing here -->
+        <form id="guess-form" method="POST">
+            {% csrf_token %}
+            <label for="guess">Your Guess:</label>
+            <!-- Adding the datalist for the guess input field -->
+            <input type="text" id="guess" name="guess" list="word-suggestions" required>
+            <datalist id="word-suggestions">
+                <!-- The options will be dynamically inserted here -->
+            </datalist>
+            <button type="submit">Submit</button>
+        </form>        
+
+        <!-- Display feedback messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="feedback-wrapper">
+            <div class="feedback-container">
+                <div class="feedback-box">Word</div>
+                <div class="feedback-box">Type</div>
+                <div class="feedback-box">Year</div>
+                <div class="feedback-box">Last Update</div>
+                <div class="feedback-box">Popularity</div>
+                <div class="feedback-box">Domains</div>
+                <div class="feedback-box">Creator</div>
+            </div>
+        </div>
+        
+        <!-- Table to display past guesses -->
+        <div id="guesses-table" style="margin-top: 20px;"></div>
+        
+        <!-- Display the daily word below the input field -->
+        <div class="daily-word">
+            <h3>Today's Word:</h3>
+            <p><strong>{{ daily_word.name }}</strong></p>
+        </div>
+
+        <div class="manual-set">
+            <button id="set-daily-word-btn">Set Today's Word Manually</button>
+            <p id="message"></p>
+        </div>
+        
+        <!-- Pass the URL for the 'game:guess' action to JS using a data attribute -->
+        <div id="js-data" data-guess-url="{% url 'game:check_guess' %}"></div>
+    </div>
+    
+    <script src="{% static 'game/scripts.js' %}"></script>
+</body>
+</html>
