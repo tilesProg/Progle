@@ -1,0 +1,260 @@
+:root {
+    --main-bg-color: #fff;
+    --color-logo: #B108FF;
+    --color-text: #727272;
+}
+body {
+    background-color: var(--main-bg-color);
+}
+
+body.dark-theme {
+    --main-bg-color:  #3D3D3D;
+    --color-text: #BDBDBD;
+}
+
+.main-page {
+    /* background-color: var(--main-bg-color); */
+    color: #333;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
+}
+
+.text-contener {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    font-family: 'Nikoleta', sans-serif;
+}
+
+.title-game{
+    color: var(--color-logo);
+    font-size: 140px;
+    margin: 0;
+    letter-spacing: 8px;
+}
+
+.text-slogan {
+    font-size: 20px;
+    color: var(--color-text);
+}
+
+.inputs-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 60%;
+}
+
+.input-box {
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    width: 100%;
+    height: 80px;
+    border: 1px solid var(--color-text);
+    border-radius: 45px;
+    box-sizing: border-box;
+    margin-bottom: 60px;
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+.input-box:hover{
+    border-color: var(--color-logo);
+}
+
+.button {
+    padding: 25px 60px;
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px var(--color-text);
+    cursor: pointer;
+    font-size: 22px;
+    position: relative;
+    z-index: 0;
+}
+
+.button:hover {
+    color: var(--main-bg-color);
+}
+
+.button:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 22s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 30px;
+}
+
+.button:active {
+    color: var(--main-bg-color);
+}
+
+.button:active:after {
+    background: transparent;
+}
+
+.button:hover:before {
+    opacity: 1;
+}
+
+.button:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.button.dark-theme {
+    box-shadow: 2px 2px 2px var(--color-text);
+}
+
+
+#message {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+/* Centering the feedback container itself */
+.feedback-container {
+    /* opacity: 0; */
+    display: flex;
+    justify-content: center; /* Centers the entire row of boxes horizontally */
+    align-items: center;
+    margin-top: 40px;
+    gap: 12px; /* Adds space between boxes */
+    width: 100%; /* Ensures the container takes the full width of its parent */
+}
+
+/* Styling for individual feedback boxes */
+.feedback-box {
+    width: 160px;  
+    height: 120px; 
+    padding: 10px;
+    border: 1px solid var(--color-logo);
+    text-align: center;
+    font-size: 1em; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0;
+    color: #333;
+    border-radius: 24px;
+}
+
+.feedback-box.dark-theme {
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+}
+
+.feedback-box.dark-theme.green { 
+    border-color: #50F73D;
+}
+
+.feedback-box.dark-theme.yellow { 
+    border-color: #FFDF29;
+}
+
+.feedback-box.dark-theme.red { 
+    border-color: #F32929;
+}
+
+
+.guesses-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.guess-row {
+    display: flex;
+    justify-content: center; 
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* .green { 
+    background-color: #DBFFD7; 
+    border-color: #DBFFD7;
+}
+
+.yellow { 
+    background-color: #FFF4B6; 
+    border-color: #FFF4B6; 
+}
+
+.red { 
+    background-color: #FFAAAA; 
+    border-color: #FFAAAA;
+} */
+
+.green { 
+    background-color: transparent; 
+    border-color: #50F73D;
+}
+
+.yellow { 
+    background-color: transparent; 
+    border-color: #FFDF29; 
+}
+
+.red { 
+    background-color: transparent; 
+    border-color: #F32929;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.header-item {
+    width: 160px;  /* Matches feedback-box width */
+    text-align: center;
+    padding: 10px;
+    color: var(--color-text);
+    border-bottom: 2px solid var(--color-logo);
+    box-sizing: border-box;
+    /* Match the exact width and padding of feedback-box */
+    margin: 0;
+    font-size: 1em;
+}
+
+body.dark-theme .header-item {
+    border-bottom-color: var(--color-text);
+}

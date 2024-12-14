@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Nikoleta';
+    src: url('./fonts/Nikoleta_1.woff2') format('woff2'),
+        url('./fonts/Nikoleta_1.woff') format('woff'),
+        url('./fonts/Nikoleta_1.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+  }

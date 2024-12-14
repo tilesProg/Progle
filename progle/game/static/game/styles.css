@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    /* width: 100%;
+    margin: 50px auto;
+    padding: 20px; */
+    margin-top: 140px;
+    margin-bottom: 50px;
+}
+
+.title{
+    font-family: 'Nikoleta', sans-serif;
+    letter-spacing: 4px;
+}
+
+h1 {
+    color: #B108FF;
+    text-align: center;
+    font-size: 140px;
+    margin-bottom: 0px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 22px;
+    color: #727272;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.input-box[type="text"] {
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    width: 50%;
+    height: 80px;
+    border: 1px solid #727272;
+    border-radius: 45px;
+    box-sizing: border-box;
+    margin-bottom: 60px;
+}
+
+.input-box[type="text"]:hover{
+    border-color: #B108FF;
+}
+
+
+.button {
+    padding: 20px 60px;
+    background-color: transparent;
+    color: #727272;
+    border: 1px solid #727272;
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px #727272;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.button:hover {
+    color: #B108FF;
+    box-shadow: 4px 4px 4px #B108FF;
+}
+
+.button:active {
+    color: #B108FF;
+    box-shadow: 4px 4px 4px #B108FF;
+    border: 1px solid #B108FF;
+}
+
+.daily-word {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.3em;
+}
+
+.daily-word h3 {
+    color: #333;
+    font-size: 1.5em;
+}
+
+.daily-word p {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.manual-set {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+/* Centering the feedback container itself */
+.feedback-container {
+    /* opacity: 0; */
+    display: flex;
+    justify-content: center; /* Centers the entire row of boxes horizontally */
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px; /* Adds space between boxes */
+    width: 100%; /* Ensures the container takes the full width of its parent */
+}
+
+/* Styling for individual feedback boxes */
+.feedback-box {
+    width: 100px;  /* Set fixed width to keep square shape */
+    height: 100px; /* Matches width for a square shape */
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 1em; /* Larger font for visibility */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0;
+    color: black;
+    border-radius: 5px;
+}
+
+.guesses-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.guess-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.green { background-color: green; }
+.yellow { background-color: yellow; color: black; }
+.red { background-color: red; }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progle</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'game/font.css' %}">
+    <link rel="stylesheet" href="{% static 'game/styles1.css' %}"> 
+    <!-- <link rel="stylesheet" href="{% static 'game/styles1.css' %}"> -->
+</head>
+<body>
+    <button id="theme-toggle">Сменить тему</button>
+    <main class="main-page">
+            <div class="text-contener">
+                <h1 class="title-game">Progle</h1>
+                <h2 class="text-slogan">GUESS THE WORD</h2>
+            </div>
+            
+            <!-- Add your input form for guessing here -->
+            <form class="inputs-form" id="guess-form" method="POST">
+                {% csrf_token %}
+                <label for="guess"></label>
+                <!-- Adding the datalist for the guess input field -->
+                <input class="input-box" type="text" placeholder="Начните вводить слово..." id="guess" name="guess" list="word-suggestions" required>
+                <datalist id="word-suggestions">
+                    <!-- The options will be dynamically inserted here -->
+                </datalist>
+                <button type="submit" class="button">Guess</button>
+            </form>        
+    
+            <!-- Display feedback messages -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+    
+            <div class="feedback-wrapper">
+                <div id="feedback-header" class="feedback-header" style="display: none;">
+                    <div class="header-item">Word</div>
+                    <div class="header-item">Type</div>
+                    <div class="header-item">Year</div>
+                    <div class="header-item">Last Update</div>
+                    <div class="header-item">Popularity</div>
+                    <div class="header-item">Domains</div>
+                    <div class="header-item">Creator</div>
+                </div>
+            </div>            
+            
+            <!-- Table to display past guesses -->
+            <div id="guesses-table" style="margin-top: 20px;"></div>
+            
+            <!-- Pass the URL for the 'game:guess' action to JS using a data attribute -->
+            <div id="js-data" data-guess-url="{% url 'game:check_guess' %}"></div>
+        
+        <script src="{% static 'game/scripts.js' %}"></script>
+    </main>
+</body>
+</html>
