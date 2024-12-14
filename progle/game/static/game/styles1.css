@@ -248,7 +248,7 @@ body.dark-theme {
     text-align: center;
     padding: 10px;
     color: var(--color-text);
-    border-bottom: 2px solid var(--color-logo);
+    border-bottom: 2px solid var(--color-text);
     box-sizing: border-box;
     /* Match the exact width and padding of feedback-box */
     margin: 0;
