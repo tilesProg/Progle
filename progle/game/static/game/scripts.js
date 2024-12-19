@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const guessedWords = new Set(); // Use a Set to keep track of unique guessed words
     const guessUrl = document.getElementById('js-data').getAttribute('data-guess-url');
     let enterPressed = false;  // Flag for preventing Enter key hold
+    const svgContainer = document.getElementById('svg-container');
+
+    guessInput.setAttribute('autocomplete', 'off');
 
     const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
     if (isDarkTheme) {
@@ -15,9 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tabs.forEach(tab => {
             tab.classList.add('dark-theme');
         });
+        loadSVG('/static/game/favicon/dark-theme-icon.svg', svgContainer);
     }
-
-    guessInput.setAttribute('autocomplete', 'off');
 
     fetch('/set-daily-word/', {
         method: "POST",
@@ -51,15 +53,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function loadSVG(filePath, container) {
+        fetch(filePath)
+            .then(response => response.text())
+            .then(svgContent => {
+                container.innerHTML = svgContent;
+            })
+            .catch(error => console.error('Error loading SVG:', error));
+    }
+
     themeToggle.addEventListener('click', function () {
-        const tabs = document.querySelectorAll('.feedback-box');
-        tabs.forEach(tab => {
-            tab.classList.toggle('dark-theme');
-        });
         document.body.classList.toggle('dark-theme');
+
         document.querySelector('.button').classList.toggle('dark-theme');
-        
-        // Save theme preference
+
+        const tabs = document.querySelectorAll('.feedback-box');
+            tabs.forEach(tab => {
+                tab.classList.toggle('dark-theme');
+            });
+
+        // Измените SVG в зависимости от темы
+        if (document.body.classList.contains('dark-theme')) {
+            loadSVG('/static/game/favicon/dark-theme-icon.svg', svgContainer);
+        } else {
+            loadSVG('/static/game/favicon/light-theme-icon.svg', svgContainer);
+        }
+
         const isDark = document.body.classList.contains('dark-theme');
         localStorage.setItem('darkTheme', isDark);
     });
