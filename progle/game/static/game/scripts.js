@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const guessUrl = document.getElementById('js-data').getAttribute('data-guess-url');
     let enterPressed = false;  // Flag for preventing Enter key hold
 
-    // const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
-    // if (isDarkTheme) {
-    //     document.body.classList.add('dark-theme');
-    //     document.querySelector('.button').classList.add('dark-theme');
-    //     const tabs = document.querySelectorAll('.feedback-box');
-    //     tabs.forEach(tab => {
-    //         tab.classList.add('dark-theme');
-    //     });
-    // }
+    const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+    if (isDarkTheme) {
+        document.body.classList.add('dark-theme');
+        document.querySelector('.button').classList.add('dark-theme');
+        const tabs = document.querySelectorAll('.feedback-box');
+        tabs.forEach(tab => {
+            tab.classList.add('dark-theme');
+        });
+    }
 
     guessInput.setAttribute('autocomplete', 'off');
 
@@ -146,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </svg>
             `;
         }
+
+        const isDark = document.body.classList.contains('dark-theme');
+        localStorage.setItem('darkTheme', isDark);
     });
 
     guessInput.addEventListener('input', () => {
