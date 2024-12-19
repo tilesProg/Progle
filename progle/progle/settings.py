@@ -28,10 +28,6 @@ INSTALLED_APPS = [
     'game',
 ]
 
-CRONJOBS = [
-    ('0 0 * * *', 'game.cron.UpdateDailyWordCronJob')  # Runs every day at midnight
-]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

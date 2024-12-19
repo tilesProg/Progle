@@ -30,7 +30,7 @@
                 {% csrf_token %}
                 <label for="guess"></label>
                 <!-- Adding the datalist for the guess input field -->
-                <input class="input-box" type="text" placeholder="Input world..." id="guess" name="guess" list="word-suggestions" required>
+                <input class="input-box" type="text" placeholder="Input word..." id="guess" name="guess" list="word-suggestions" required>
                 <datalist id="word-suggestions">
                     <!-- The options will be dynamically inserted here -->
                 </datalist>
